@@ -15,7 +15,7 @@ function ProtectedPage() {
     const fetchCategories = async () => {
       try {
         const token = localStorage.getItem('token');
-        const response = await axios.get(`http://localhost:5000/api/categories?page=${currentPage}&limit=${itemsPerPage}`, {
+        const response = await axios.get(`https://categorization-app-api.vercel.app/api/categories?page=${currentPage}&limit=${itemsPerPage}`, {
           headers: { Authorization: `Bearer ${token}` }
         });
 
@@ -50,7 +50,7 @@ function ProtectedPage() {
     try {
       const token = localStorage.getItem('token');
       await axios.post(
-        'http://localhost:5000/api/user/selections',
+        'https://categorization-app-api.vercel.app/api/user/selections',
         { selectedCategories: mergedSelectedCategories },
         { headers: { Authorization: `Bearer ${token}` } }
       );
