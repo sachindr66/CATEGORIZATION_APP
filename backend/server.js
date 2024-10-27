@@ -19,6 +19,11 @@ app.use(cors(
 app.use(express.json());
 
 app.use('/api/auth', authRoutes);
+
+app.use('/api/auth', (req, res, next) => {
+    console.log("Auth route accessed");
+    next();
+  }, authRoutes);
 app.use('/api/categories', categoryRoutes);
 app.use('/api/user', userRoutes); 
 
