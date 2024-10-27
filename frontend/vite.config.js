@@ -6,7 +6,11 @@ export default defineConfig({
   plugins: [react()],
   server: {
     proxy: {
-      '/api': 'http://localhost:', // Proxy /api requests to the backend
+      '/api': {
+        target: 'https://categorization-app-api.vercel.app', // Proxy /api requests to the backend on port 5000
+        changeOrigin: true,
+        secure: false,
+      },
     },
   },
 });
