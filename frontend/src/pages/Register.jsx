@@ -17,7 +17,7 @@ function Register() {
     setMessage('');  
   
     try {
-      await axios.post('http://localhost:5000/api/auth/register', formData);
+      await axios.post('https://categorization-app-backend.vercel.app/api/auth/register', formData);
       setMessage('Account successfully created!');
       console.log('Account successfully created!');
       setIsError(false);
@@ -80,7 +80,6 @@ function Register() {
           Create Account
         </button>
 
-        {/* Log In Link */}
         <p className="text-center mt-4 text-gray-600">
           Already have an account?{' '}
           <Link to="/login" className="text-blue-500 hover:underline">

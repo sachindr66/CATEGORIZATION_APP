@@ -4,12 +4,18 @@ const mongoose = require('mongoose');
 const connectDB = require('./config/db');
 const authRoutes = require('./routes/authRoutes');
 const categoryRoutes = require('./routes/categoryRoutes');
-const userRoutes = require('./routes/userRoutes'); // Import userRoutes here
+const userRoutes = require('./routes/userRoutes'); 
 require('dotenv').config();
 
 const app = express();
 connectDB();
-app.use(cors());
+app.use(cors(
+    {
+        origin:['https://categorization-app-frontend.vercel.app'],
+        methods:['POST','GET'],
+        credentials:true
+    }
+));
 app.use(express.json());
 
 app.use('/api/auth', authRoutes);
