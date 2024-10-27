@@ -40,7 +40,7 @@ const categories = [
   { name: 'Luxury Items' }
 ];
 
-mongoose.connect("sachindr:sachin@sachin.cjikv.mongodb.net/categorization_app", { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect("mongodb+srv://sachindr:sachin@sachin.cjikv.mongodb.net/categorization_app", { useNewUrlParser: true, useUnifiedTopology: true });
 
 const seedCategories = async () => {
   try {
