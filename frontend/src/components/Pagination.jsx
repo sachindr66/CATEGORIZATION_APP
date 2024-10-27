@@ -2,7 +2,7 @@ import React from 'react';
 
 function Pagination({ totalItems, itemsPerPage, currentPage, onPageChange }) {
   const totalPages = Math.ceil(totalItems / itemsPerPage);
-  const pageLimit = 6;
+  const pageLimit = 4;
   let startPage = Math.max(1, currentPage - Math.floor(pageLimit / 2));
   let endPage = Math.min(totalPages, startPage + pageLimit - 1);
 

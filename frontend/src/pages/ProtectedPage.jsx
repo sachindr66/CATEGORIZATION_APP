@@ -14,10 +14,9 @@ function ProtectedPage() {
   useEffect(() => {
     const fetchCategories = async () => {
       try {
-        const apiBaseUrl = import.meta.env.VITE_API_URL;
         const token = localStorage.getItem('token');
-        const response = await axios.get(`${apiBaseUrl}/api/categories?page=${currentPage}&limit=${itemsPerPage}`, {
-          headers: { Authorization: `Bearer ${token}` },
+        const response = await axios.get(`http://localhost:5000/api/categories?page=${currentPage}&limit=${itemsPerPage}`, {
+          headers: { Authorization: `Bearer ${token}` }
         });
 
         const updatedCategories = response.data.categories.map((category) => ({
@@ -35,29 +34,26 @@ function ProtectedPage() {
   }, [currentPage]);
 
   const handleSelectionChange = async (categoryId) => {
-    // Toggle the selection state of the category
     const updatedCategories = categories.map((category) =>
       category._id === categoryId ? { ...category, selected: !category.selected } : category
     );
     setCategories(updatedCategories);
 
-    // Update the selected categories list
     const updatedSelectedCategories = updatedCategories
       .filter((category) => category.selected)
       .map((category) => category._id);
 
-    // Merge selected categories from other pages and save to local storage
     const mergedSelectedCategories = Array.from(new Set([...selectedCategories, ...updatedSelectedCategories]));
     setSelectedCategories(mergedSelectedCategories);
     localStorage.setItem('selectedCategories', JSON.stringify(mergedSelectedCategories));
 
     try {
-      // Save selected categories to the server
       const token = localStorage.getItem('token');
-      await axios.post(`${apiBaseUrl}/api/user/selections`,
-         { selectedCategories: mergedSelectedCategories }, {
-        headers: { Authorization: `Bearer ${token}` },
-      });
+      await axios.post(
+        'http://localhost:5000/api/user/selections',
+        { selectedCategories: mergedSelectedCategories },
+        { headers: { Authorization: `Bearer ${token}` } }
+      );
     } catch (error) {
       console.error('Error saving selections:', error);
     }
@@ -66,7 +62,7 @@ function ProtectedPage() {
   const handlePageChange = (page) => setCurrentPage(page);
 
   return (
-    <div className="p-4">
+    <div className="p-4 w-full flex flex-col items-center">
       <h2 className="text-2xl font-semibold mb-4">Please mark your interests!</h2>
       <div className="grid grid-cols-1 gap-4">
         {categories.length > 0 ? (

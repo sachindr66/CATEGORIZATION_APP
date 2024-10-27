@@ -17,8 +17,7 @@ function Register() {
     setMessage('');  
   
     try {
-      const apiBaseUrl = import.meta.env.VITE_API_URL;
-      await axios.post(`${apiBaseUrl}/api/auth/register`, formData);
+      await axios.post('http://localhost:5000/api/auth/register', formData);
       setMessage('Account successfully created!');
       console.log('Account successfully created!');
       setIsError(false);

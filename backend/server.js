@@ -11,7 +11,7 @@ const app = express();
 connectDB();
 app.use(cors(
     {
-        origin:['https://categorization-app-frontend.vercel.app'],
+        origin:['http://localhost:5173'],
         methods:['POST','GET'],
         credentials:true
     }
@@ -19,11 +19,6 @@ app.use(cors(
 app.use(express.json());
 
 app.use('/api/auth', authRoutes);
-
-app.use('/api/auth', (req, res, next) => {
-    console.log("Auth route accessed");
-    next();
-  }, authRoutes);
 app.use('/api/categories', categoryRoutes);
 app.use('/api/user', userRoutes); 
 

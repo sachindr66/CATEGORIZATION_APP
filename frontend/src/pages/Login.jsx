@@ -17,8 +17,7 @@ function Login() {
     setMessage('');    
 
     try {
-      const apiBaseUrl = import.meta.env.VITE_API_URL;
-      const response = await axios.post(`${apiBaseUrl}/api/auth/login`, formData);
+      const response = await axios.post('http://localhost:5000/api/auth/login', formData);
       localStorage.setItem('token', response.data.token);
       setMessage('Login successful!'); 
       console.log('Login successful!')  
