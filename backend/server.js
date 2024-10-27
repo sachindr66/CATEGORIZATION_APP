@@ -12,7 +12,7 @@ const app = express();
 connectDB();
 app.use(cors(
     {
-        origin:['https://categorization-app-frontend.vercel.app'],
+        origin:['https://categorization-app-frontend.vercel.app/login'],
         methods:['POST','GET'],
         credentials:true
     }
