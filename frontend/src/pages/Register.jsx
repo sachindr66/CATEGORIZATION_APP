@@ -17,7 +17,7 @@ function Register() {
     setMessage('');  
   
     try {
-      await axios.post('https://categorization-app-backend.vercel.app/api/auth/register', formData);
+      await axios.post('https://categorization-app-api.vercel.app/api/auth/register', formData);
       setMessage('Account successfully created!');
       console.log('Account successfully created!');
       setIsError(false);

@@ -17,7 +17,7 @@ function Login() {
     setMessage('');    
 
     try {
-      const response = await axios.post('https://categorization-app-backend.vercel.app/api/auth/login', formData);
+      const response = await axios.post('https://categorization-app-api.vercel.app/api/auth/login', formData);
       localStorage.setItem('token', response.data.token);
       setMessage('Login successful!'); 
       console.log('Login successful!')  

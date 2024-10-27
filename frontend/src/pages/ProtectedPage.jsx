@@ -54,7 +54,7 @@ function ProtectedPage() {
       // Save selected categories to the server
       const token = localStorage.getItem('token');
       await axios.post(
-        'https://categorization-app-backend.vercel.app/api/user/selections',
+        'https://https://categorization-app-api.vercel.app//api/user/selections',
         { selectedCategories: mergedSelectedCategories },
         { headers: { Authorization: `Bearer ${token}` } }
       );
