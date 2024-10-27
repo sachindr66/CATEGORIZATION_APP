@@ -1,6 +1,5 @@
 const mongoose = require('mongoose');
 const Category = require('./models/Category');
-require('dotenv').config();
 
 const categories = [
   { name: 'Shoes' },
@@ -41,7 +40,7 @@ const categories = [
   { name: 'Luxury Items' }
 ];
 
-mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect("sachindr:sachin@sachin.cjikv.mongodb.net/categorization_app", { useNewUrlParser: true, useUnifiedTopology: true });
 
 const seedCategories = async () => {
   try {
