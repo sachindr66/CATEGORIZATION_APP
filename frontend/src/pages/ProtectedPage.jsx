@@ -14,9 +14,10 @@ function ProtectedPage() {
   useEffect(() => {
     const fetchCategories = async () => {
       try {
+        const apiBaseUrl = import.meta.env.VITE_API_URL;
         const token = localStorage.getItem('token');
-        const response = await axios.get(`https://categorization-app-backend.vercel.app/api/categories?page=${currentPage}&limit=${itemsPerPage}`, {
-          headers: { Authorization: `Bearer ${token}` }
+        const response = await axios.get(`${apiBaseUrl}/api/categories?page=${currentPage}&limit=${itemsPerPage}`, {
+          headers: { Authorization: `Bearer ${token}` },
         });
 
         const updatedCategories = response.data.categories.map((category) => ({
@@ -53,11 +54,10 @@ function ProtectedPage() {
     try {
       // Save selected categories to the server
       const token = localStorage.getItem('token');
-      await axios.post(
-        'https://https://categorization-app-api.vercel.app//api/user/selections',
-        { selectedCategories: mergedSelectedCategories },
-        { headers: { Authorization: `Bearer ${token}` } }
-      );
+      await axios.post(`${apiBaseUrl}/api/user/selections`,
+         { selectedCategories: mergedSelectedCategories }, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
     } catch (error) {
       console.error('Error saving selections:', error);
     }
